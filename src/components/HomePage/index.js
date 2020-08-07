@@ -38,7 +38,7 @@ function HomePage(props) {
 	return (
 		<main className={classes.main}>
 			<Paper className={classes.paper}>
-				<Avatar className={classes.avatar} alt="Icon" src={window.location.origin + '/favicon.ico'} />
+				<Avatar className={classes.avatar} alt="Icon" src={window.location.origin + '/icon.png'} />
 				<Typography component="h1" variant="h5">
 					Hello {firebase.auth.currentUser ? firebase.auth.currentUser.displayName : 'Guest'}!
 				</Typography>
