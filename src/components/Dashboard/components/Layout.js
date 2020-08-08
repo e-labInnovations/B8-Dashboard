@@ -94,7 +94,7 @@ const Layout = ({ classes, children, container, logout }) => {
         <ListItem
           button
           component={Link}
-          to='/dashboard/follow up videos'
+          to='/dashboard/SolvedProblems'
           onClick={() => setMobileOpen(false)}
         >
           <ListItemIcon>

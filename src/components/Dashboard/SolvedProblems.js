@@ -14,7 +14,7 @@ import {
   InputLabel,
 } from '@material-ui/core';
 import Layout from './components/Layout';
-import SolvedProblems from './SolvedProblems';
+import Videos from './components/Videos';
 import Page404 from '../404/404';
 import Feedbacks from './components/Feedbacks';
 import Profile from './components/Profile';
@@ -39,7 +39,7 @@ const styles = (theme) => ({
   },
 });
 
-function Dashboard(props) {
+function SolvedProblems(props) {
   var path = props.match.url;
   const { classes } = props;
   const [loading, setLoading] = useState(true);
@@ -53,8 +53,6 @@ function Dashboard(props) {
     return null;
   }
 
-  const [news, setNews] = useState('');
-
   useEffect(() => {
 	  firebase.database
       .ref('problems/')
@@ -65,30 +63,15 @@ function Dashboard(props) {
           var commObj = childSnapshot.val();
           var uid = commObj.uid;
             commObj.key = childSnapshot.key || '';
-			if(!commObj.solved){
+			if(commObj.solved){
 				testArray.push(commObj);
 			}
         });
         setFeedbacks(testArray);
       });
-    firebase.database
-      .ref('flashNews/flashNews/newsLine')
-      .once('value')
-      .then((snapShot) => {
-        setNews(snapShot.val());
-      });
     //eslint-disable-next-line
   }, []);
 
-  const updateNews = () => {
-    firebase.database.ref('flashNews/flashNews/newsLine').set(news, (error) => {
-      if (error) {
-        alert(error);
-      } else {
-        alert('Updated');
-      }
-    });
-  };
   
   const dateFormate = (date) => {
   var d = new Date(date);
@@ -106,13 +89,6 @@ function Dashboard(props) {
 }
 
   return (
-    <main className={classes.main}>
-      <Router>
-        <Switch>
-          <Route
-            exact
-            path='/dashboard'
-            render={() => (
               <Layout logout={logout}>
                 <List className={classes.root}>
         {feedbacks.reverse().map((feedback, index) => {
@@ -131,7 +107,8 @@ function Dashboard(props) {
                       >
                         {feedback.location + ' - ' + dateFormate(feedback.time)}
                       </Typography><br />
-                      {feedback.message}
+					  Fixed By: {feedback.solved_officer}<br />
+					  Fixed Time: {feedback.solved_time}
                     </React.Fragment>
                   }
                 />
@@ -142,54 +119,6 @@ function Dashboard(props) {
         })}
       </List>
               </Layout>
-            )}
-          />
-          <Route
-            exact
-            path='/dashboard/feedbacks'
-            render={() => (
-              <Layout logout={logout}>
-                <Feedbacks />
-              </Layout>
-            )}
-          />
-          <Route
-            exact
-            path='/dashboard/SolvedProblems'
-            render={() => (
-              <Layout logout={logout}>
-                <SolvedProblems Tag='Follow up' />
-              </Layout>
-            )}
-          />
-          <Route
-            exact
-            path='/dashboard/Profile'
-            render={() => (
-              <Layout logout={logout}>
-                <Profile  logout={logout} />
-              </Layout>
-            )}
-          />
-          <Route
-            exact
-            path='/dashboard/register'
-            render={() => (
-              <Layout logout={logout}>
-                <Register />
-              </Layout>
-            )}
-          />
-          <Route
-            render={() => (
-              <Layout logout={logout}>
-                <Page404 />
-              </Layout>
-            )}
-          />
-        </Switch>
-      </Router>
-    </main>
   );
 
   async function logout() {
@@ -198,4 +127,4 @@ function Dashboard(props) {
   }
 }
 
-export default withRouter(withStyles(styles)(Dashboard));
+export default withRouter(withStyles(styles)(SolvedProblems));
