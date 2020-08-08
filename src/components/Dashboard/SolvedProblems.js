@@ -108,7 +108,7 @@ function SolvedProblems(props) {
                         {feedback.location + ' - ' + dateFormate(feedback.time)}
                       </Typography><br />
 					  Fixed By: {feedback.solved_officer}<br />
-					  Fixed Time: {feedback.solved_time}
+					  Fixed Time: {dateFormate(feedback.solved_time)}
                     </React.Fragment>
                   }
                 />

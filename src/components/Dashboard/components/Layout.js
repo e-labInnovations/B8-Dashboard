@@ -31,6 +31,7 @@ import RowingIcon from '@material-ui/icons/Rowing';
 import PermMediaIcon from '@material-ui/icons/PermMedia';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import { Link } from 'react-router-dom';
 import firebase from '../../firebase';
 
@@ -58,6 +59,8 @@ const styles = (theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+	background: '#0d2734',
+	color: '#ffffff'
   },
   content: {
     flexGrow: 1,
@@ -87,7 +90,7 @@ const Layout = ({ classes, children, container, logout }) => {
           onClick={() => setMobileOpen(false)}
         >
           <ListItemIcon>
-            <HomeIcon />
+            <HomeIcon style={{ color: '#ffffff' }} />
           </ListItemIcon>
           <ListItemText primary='New Problems' />
         </ListItem>
@@ -98,7 +101,7 @@ const Layout = ({ classes, children, container, logout }) => {
           onClick={() => setMobileOpen(false)}
         >
           <ListItemIcon>
-            <VideoLibraryIcon />
+            <AssignmentTurnedInIcon style={{ color: '#ffffff' }} />
           </ListItemIcon>
           <ListItemText primary='Solved Problems' />
         </ListItem>
@@ -113,7 +116,7 @@ const Layout = ({ classes, children, container, logout }) => {
           to='/dashboard/Profile'
         >
           <ListItemIcon>
-            <AccountCircleIcon />
+            <AccountCircleIcon style={{ color: '#ffffff' }} />
           </ListItemIcon>
           <ListItemText primary='Your Account' />
         </ListItem>
@@ -125,14 +128,14 @@ const Layout = ({ classes, children, container, logout }) => {
           to='/dashboard/register'
         >
           <ListItemIcon>
-            <PersonAddIcon />
+            <PersonAddIcon style={{ color: '#ffffff' }} />
           </ListItemIcon>
           <ListItemText primary='Register New Account' />
         </ListItem>
 
         <ListItem button onClick={logout}>
           <ListItemIcon>
-            <ExitToAppIcon />
+            <ExitToAppIcon style={{ color: '#ffffff' }} />
           </ListItemIcon>
           <ListItemText primary='logout' />
         </ListItem>
@@ -144,7 +147,7 @@ const Layout = ({ classes, children, container, logout }) => {
     <Fragment>
       <CssBaseline />
       <div className={classes.root}>
-        <AppBar position='absolute' className={classes.appBar}>
+        <AppBar position='absolute' style={{ background: '#7cb227' }} className={classes.appBar}>
           <Toolbar>
             <IconButton
               color='inherit'
