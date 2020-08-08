@@ -115,7 +115,7 @@ function Dashboard(props) {
             render={() => (
               <Layout logout={logout}>
                 <List className={classes.root}>
-        {feedbacks.reverse().map((feedback, index) => {
+        {feedbacks.map((feedback, index) => {
           return (
             <div key={feedback.time + index}>
               <ListItem alignItems='flex-start'>
